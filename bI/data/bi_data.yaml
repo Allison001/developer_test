@@ -3,3 +3,8 @@ login_success:
 
 ids:
   - 'success'
+
+
+login_fail:
+  - ["test2@qq.com", '1234567']
+  - ["test@qq.com",'12345678']

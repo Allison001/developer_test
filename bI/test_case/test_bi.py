@@ -10,7 +10,8 @@ def get_data():
         data = yaml.safe_load(f)
         dat = data['login_success']
         ids = data['ids']
-    return [dat,ids]
+        fail = data['login_fail']
+    return [dat,ids,fail]
 
 
 class TestBi():
@@ -31,8 +32,7 @@ class TestBi():
 
     #测试登录失败
     # @pytest.mark.skip
-    @pytest.mark.parametrize("username,password", [("test2@qq.com", '1234567'),
-                                                   ("test@qq.com",'12345678')])
+    @pytest.mark.parametrize("username,password", get_data()[2])
     def test_login_fail(self,username,password):
         result = self.d.login_fail_error(username,password)
         assert result == '登录失败'
